@@ -1,5 +1,7 @@
 package com.freelance.customer;
 
+import com.freelance.clients.fraud.FraudCheckResponse;
+import com.freelance.clients.fraud.FraudClient;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -10,6 +12,7 @@ public class CustomerService {
 
     private final CustomerRepository customerRepository;
     private final RestTemplate restTemplate;
+    private final FraudClient fraudClient;
 
     public void registerCustomer(CustomerRegistrationRequest request) throws Exception {
         // validar que el email no sea duplicado
@@ -21,13 +24,8 @@ public class CustomerService {
 
         customerRepository.saveAndFlush(customer);
 
-        FraudCheckResponse fraudCheckResponse = restTemplate.getForObject(
-                "http://FRAUD/api/v1/fraud-check/{customerId}",
-                FraudCheckResponse.class,
-                customer.getId()
-        );
+        FraudCheckResponse fraudCheckResponse = fraudClient.isFraudster(customer.getId());
 
-        assert fraudCheckResponse != null;
         if (fraudCheckResponse.isFraudster()) {
             throw new Exception("fraudster");
         }

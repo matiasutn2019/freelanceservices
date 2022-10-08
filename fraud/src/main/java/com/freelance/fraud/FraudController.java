@@ -1,5 +1,6 @@
 package com.freelance.fraud;
 
+import com.freelance.clients.fraud.FraudCheckResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,4 +20,5 @@ public class FraudController {
                 fraudService.isFraudulentCustomer(customerID)
         );
     }
+    //si agrego un nuevo método acá tmb debo agregarlo a la interfaz FraudClient
 }
