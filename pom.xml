@@ -11,6 +11,7 @@
     <modules>
         <module>customer</module>
         <module>fraud</module>
+        <module>eureka-server</module>
     </modules>
 
     <name>freelanceservices</name>
@@ -28,10 +29,20 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
-                <version>2.5.7</version>
+                <version>2.7.4</version>
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-dependencies -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>2021.0.4</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
