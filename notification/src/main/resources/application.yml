@@ -1,0 +1,21 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: notification
+  datasource:
+    password: password
+    url: jdbc:postgresql://localhost:5430/notification #cambié el 5432 por 5430 por tener instalado postgres
+    username: amigoscode
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
