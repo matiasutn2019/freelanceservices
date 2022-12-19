@@ -45,11 +45,21 @@ services:
     container_name: mongo-express
     restart: always
     ports:
-      - 8081:8081
+      - 8089:8081 #cambié 8081 a 8089 xq 8081 está ocupado
     environment:
       - ME_CONFIG_MONGODB_ADMINUSERNAME=root
       - ME_CONFIG_MONGODB_ADMINPASSWORD=root
       - ME_CONFIG_MONGODB_SERVER=mongodb
+
+  zipkin:
+    image: openzipkin/zipkin
+    container_name: zipkin
+    # Environment settings are defined here https://github.com/openzipkin/zipkin/blob/master/zipkin-server/README.md#environment-variables
+    ports:
+      # Port used for the Zipkin UI and HTTP Api
+      - "9411:9411"
+      # Uncomment if you set SCRIBE_ENABLED=true
+      # - 9410:9410
 
 networks:
   postgres:
